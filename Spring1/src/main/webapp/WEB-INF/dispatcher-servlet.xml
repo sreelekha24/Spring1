@@ -78,7 +78,6 @@
 				<value>com.spring.courses.model.Hybris</value>
 				<value>com.spring.courses.model.Spring</value>
 				<value>com.spring.courses.model.FrontEndTechnologies</value>
-
 			</list>
 		</property>
 		<property name="packagesToScan" value="com.spring.courses"></property>

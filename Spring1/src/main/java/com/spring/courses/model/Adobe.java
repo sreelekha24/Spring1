@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -23,6 +25,7 @@ public class Adobe implements Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer sId;
 	private String courseName;
 	private byte[] image;
@@ -94,11 +97,20 @@ public class Adobe implements Serializable {
 		this.base641 = base641;
 	}
 
-	@Override
-	public String toString() {
-		return "Adobe [sId=" + sId + ", courseName=" + courseName + ", image=" + Arrays.toString(image) + ", base64="
-				+ base64 + ", mId=" + mId + ", file=" + Arrays.toString(file) + ", filename=" + filename + ", base641="
-				+ base641 + ", details=" + details + "]";
+	public byte[] getFile() {
+		return file;
+	}
+
+	public void setFile(byte[] file) {
+		this.file = file;
+	}
+
+	public String getFilename() {
+		return filename;
+	}
+
+	public void setFilename(String filename) {
+		this.filename = filename;
 	}
 
 }

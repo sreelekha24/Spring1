@@ -11,21 +11,22 @@
 .data {
 	width: 33.33%;
 	height: 10%;
-	float :left;
+	float: left;
 }
 </style>
 </head>
 <body>
+	<jsp:include page="main.jsp"></jsp:include><br>
+	<br>
 
 
 	<table>
 		<c:forEach items="${listCourses}" var="list">
 			<div class="data">
 				<img src="data:image/jpg;base64,${list.base64}" height="100"
-					width="150" /><br> <a href="getCourses/${list.courseName}"
-					class="active"> ${list.courseName} </a> <br>
+					width="150" /><br> <a href="getCourses/${list.courseName}"> ${list.courseName} </a> <br>
 			</div>
-		
+
 		</c:forEach>
 	</table>
 

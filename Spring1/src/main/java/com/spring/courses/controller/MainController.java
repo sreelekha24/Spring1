@@ -50,8 +50,8 @@ public class MainController {
 	@RequestMapping(value = "/call")
 	public String method1() throws IOException {
 
-		Long count = coursesService.getCount();
-		coursesService.addDetails(count);
+//		Long count = coursesService.getCount();
+		coursesService.addDetails(1);
 		return "adobe";
 	}
 
@@ -103,8 +103,10 @@ public class MainController {
 		return new ModelAndView("xxx");
 	}
 
-	@RequestMapping(value = "/deleteCourse")
-	public void deleteCourse() {
+	@RequestMapping(value = "/deleteCourse/{courseName}")
+	public void deleteCourse(@PathVariable String courseName) {
+
+		coursesService.deleteCourse(courseName);
 
 	}
 }

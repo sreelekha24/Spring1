@@ -16,7 +16,6 @@ public class CoursesServiceImpl implements CoursesService {
 	@Autowired
 	CoursesDao coursesDao;
 
-
 	public List<MainCategory> getAllCourses() {
 		return coursesDao.getAllCourses();
 	}
@@ -32,13 +31,19 @@ public class CoursesServiceImpl implements CoursesService {
 	public List<CourseDetails> getRecord(String coursename) {
 		return coursesDao.getRecord(coursename);
 	}
-	
+
 	public Long getCount() {
 		return coursesDao.getCount();
 	}
 
 	public void addCourse(AddCourse addcourse) {
 		coursesDao.addCourse(addcourse);
+	}
+
+	@Override
+	public void deleteCourse(String coursename) {
+
+		coursesDao.deleteCourse(coursename);
 	}
 
 }

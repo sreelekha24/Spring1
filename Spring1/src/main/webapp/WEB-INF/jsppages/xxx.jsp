@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="main.jsp"></jsp:include><br><br>
 	<a href="listCourses">View all Courses</a>
 </body>
 </html>

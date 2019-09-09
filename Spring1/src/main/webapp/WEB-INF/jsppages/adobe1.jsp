@@ -14,9 +14,8 @@
 <title>Insert title here</title>
 <style>
 .data {
-	width: 25%;
+	width: 33.33%;
 	height: 10%;
-	float: left;
 }
 </style>
 </head>
@@ -28,15 +27,11 @@
 		<div class="data">
 			<img src="data:image/jpg;base64,${list.base64}" height="100"
 				width="150" /><br> <a
-				href="${pageContext.request.contextPath}/details/${list.courseName}">${list.courseName}</a><br>
-			<a href="${pageContext.request.contextPath}/call">Add</a> <a
-				href="${pageContext.request.contextPath}/deleteCourse/${list.courseName}">Delete</a>
+				href="${pageContext.request.contextPath}/details1/${list.courseName}">${list.courseName}</a><br>
 
 		</div>
 
 	</c:forEach>
-
-	<a href="${pageContext.request.contextPath}/addCourse">Add Course</a>
 
 </body>
 </html>

@@ -9,6 +9,8 @@
 		<put-attribute name="header"
 			value="/WEB-INF/tiles/header.jsp" />
 		<put-attribute name="title" value="" />
+		<!-- <put-attribute name="navigationbar" value="/WEB-INF/jsppages/main.jsp" 
+			/> -->
 		<put-attribute name="body" value="" />
 		<put-attribute name="footer"
 			value="/WEB-INF/tiles/footer.jsp" />
@@ -58,5 +60,26 @@
 		<put-attribute name="body"
 			value="/WEB-INF/jsppages/listUsers.jsp" />
 	</definition>
+	<definition name="main1" extends="base.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsppages/main1.jsp" />
+	</definition>
+	<definition name="mainCategory1" extends="base.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsppages/mainCategory1.jsp" />
+	</definition>
+	<definition name="adobe1" extends="base.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsppages/adobe1.jsp" />
+	</definition>
+	<definition name="display1" extends="base.definition">
+		<put-attribute name="title" value="" />
+		<put-attribute name="body"
+			value="/WEB-INF/jsppages/display1.jsp" />
+	</definition>
+	
 
 </tiles-definitions>

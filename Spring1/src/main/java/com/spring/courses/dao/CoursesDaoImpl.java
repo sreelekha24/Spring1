@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -52,7 +53,8 @@ public class CoursesDaoImpl implements CoursesDao {
 	}
 
 	public void addDetails(long count) throws IOException {
-		FileInputStream fileInputStream = new FileInputStream(new File("C:/Users/To-ow-12/Desktop/Data.xlsx"));
+		FileInputStream fileInputStream = new FileInputStream(
+				new File("C:/Users/To-ow-12/Desktop/SpringTrainingSheet.xlsx"));
 
 		@SuppressWarnings("resource")
 		XSSFWorkbook workbook = new XSSFWorkbook(fileInputStream);
@@ -61,43 +63,66 @@ public class CoursesDaoImpl implements CoursesDao {
 
 		System.out.println("sheet.getLastRowNum()" + sheet.getLastRowNum());
 		Row row = null;
-		int count1 = (int) count;
-		for (int i = count1; i <= sheet.getLastRowNum(); i++) {
+//		int count1 = (int) count;
+		Cell cell = null;
+		for (int i = 1; i <= sheet.getLastRowNum(); i++) {
+			if (sheet.getRow(i) != null) {
 
-			row = sheet.getRow(i);
+				row = sheet.getRow(i);
+				System.out.println("Loop1" + i);
+				String sno = null;
+				if (row.getCell(0) != null)
+					sno = row.getCell(0).toString();
+				System.out.println(sno);
 
-			int number = 0;
-			if (row.getCell(0) != null)
-				number = (int) Double.parseDouble(row.getCell(0).toString());
-			System.out.println(number);
+				String topics = null;
+				if (row.getCell(1) != null)
+					topics = row.getCell(1).toString();
+				System.out.println(topics);
 
-			String courseName = null;
-			if (row.getCell(1) != null)
-				courseName = row.getCell(1).toString();
+				String description = null;
+				if (row.getCell(2) != null)
+					description = row.getCell(2).toString();
+				System.out.println(description);
 
-			String description = null;
-			if (row.getCell(2) != null)
-				description = row.getCell(2).toString();
-			Session session = this.sessionFactory.getCurrentSession();
+				String tasks = null;
+				if (row.getCell(3) != null)
+					tasks = row.getCell(3).toString();
+				System.out.println(tasks);
 
-			CourseDetails details = new CourseDetails();
-			details.setId(number);
-			details.setCourseName(courseName);
-			details.setDescription(description);
+				String days = null;
+				if (row.getCell(4) != null)
+					days = row.getCell(4).toString();
+				System.out.println(days);
 
-			// session.saveOrUpdate(excelTable);
+				String reference = null;
+				if (row.getCell(5) != null)
+					reference = row.getCell(5).toString();
+				System.out.println(reference);
+				Session session = this.sessionFactory.getCurrentSession();
 
-			session.saveOrUpdate(details);
-			System.out.println("Data Inserted");
+				CourseDetails details = new CourseDetails();
+				details.setSno(sno);
+				details.setTopics(topics);
+				details.setDescription(description);
+				details.setTasks(tasks);
+				details.setDays(days);
+				details.setReference(reference);
 
-			// transaction.commit();
-			// session.close();
+				// session.saveOrUpdate(excelTable);
 
-		}
-		try {
-			fileInputStream.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+				session.saveOrUpdate(details);
+				System.out.println("Data Inserted");
+
+				// transaction.commit();
+				// session.close();
+
+			}
+			try {
+				fileInputStream.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 
@@ -105,8 +130,7 @@ public class CoursesDaoImpl implements CoursesDao {
 	public List<CourseDetails> getRecord(String courseName) {
 
 		Session session = this.sessionFactory.getCurrentSession();
-		Query query = session.createQuery("from CourseDetails where courseName = :id");
-		query.setParameter("id", courseName);
+		Query query = session.createQuery("from CourseDetails");
 
 		List<CourseDetails> courseList = query.list();
 		System.out.println(courseList);
@@ -130,8 +154,8 @@ public class CoursesDaoImpl implements CoursesDao {
 		Session session = this.sessionFactory.getCurrentSession();
 
 		String courseName = addcourse.getCategory();
-		Query query = session.createSQLQuery(
-				"INSERT INTO " + courseName + " (courseName,image,mId,file,filename) VALUES (:courseName, :image, :mId, :file, :filename)");
+		Query query = session.createSQLQuery("INSERT INTO " + courseName
+				+ " (courseName,image,mId,file,filename) VALUES (:courseName, :image, :mId, :file, :filename)");
 		query.setParameter("courseName", addcourse.getCourseName());
 		query.setParameter("image", addcourse.getImage());
 		query.setParameter("file", addcourse.getFile());
@@ -163,21 +187,17 @@ public class CoursesDaoImpl implements CoursesDao {
 
 		System.out.println("Data Inserted");
 	}
+
+	public void deleteCourse(String coursename) {
+		
+		Session session = this.sessionFactory.getCurrentSession();
+//		E p = (E) session.load(E.class, new Integer(id));
+		
+		Query query = session.createQuery("delete from Adobe c where c.courseName=:name");
+		query.setParameter("name", coursename);
+		int res = query.list().size();
+
+		System.out.println(res);
+
+	}
 }
-/*
- * AddCourse adobe = null; String courseName = addcourse.getCategory();
- * 
- * switch (courseName) {
- * 
- * case "Adobe": adobe.setsId(addcourse.getsId());
- * adobe.setCourseName(addcourse.getCourseName());
- * adobe.setImage(addcourse.getImage()); adobe.setmId(1);
- * session.saveOrUpdate(adobe);
- * 
- * break; case "Hybris": adobe.setsId(addcourse.getsId());
- * adobe.setCourseName(addcourse.getCourseName());
- * adobe.setImage(addcourse.getImage()); adobe.setmId(2);
- * session.saveOrUpdate(adobe);
- * 
- * break; }
- */

@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<jsp:include page="main.jsp"></jsp:include><br><br>
 	<div align="center">
 		<form:form action="addCourseDetails" method="post" modelAttribute="addcourse" enctype="multipart/form-data">
 			<table>

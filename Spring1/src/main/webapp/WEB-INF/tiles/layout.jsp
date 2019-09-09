@@ -10,15 +10,15 @@
 </head>
 <body>
 	<div
-		style="width: 100%; height: 20%; top: 0; background-color: #e6ecf5; display:fixed;">
+		style="width: 100%; height: 20%; top: 0;background-color: #e6ecf5; display: inline-block;">
 		<tiles:insertAttribute name="header" />
 	</div>
 	<div
-		style="padding: 10px; width: 100%; height: 78%; display: inline-block;">
+		style="padding: 10px; width: 100%; height: 75%; display: inline-block;">
 		<tiles:insertAttribute name="body" />
 	</div>
 	<div
-		style="width: 100%; height: 2%; bottom: 0; background-color: yellow; color: black; text-align: center; display: fixed;">
+		style="width: 100%; height: 5%; bottom: 0; position: fixed; background-color: #68ad57; color: black; text-align: center; display: inline-block;">
 		<tiles:insertAttribute name="footer" />
 	</div>
 

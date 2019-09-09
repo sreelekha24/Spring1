@@ -20,6 +20,8 @@ public interface CoursesService {
 	public Long getCount();
 	
 	public void addCourse(AddCourse addcourse);
+	
+	public void deleteCourse(String coursename);
 
 
 }
